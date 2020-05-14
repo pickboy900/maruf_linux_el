@@ -1,43 +1,12 @@
-"set nocompatible              " be iMproved, required
-"filetype off                  " required
-
-
-"call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-" All of your Plugins must be added before the following line
-"call vundle#end()            " required
-"filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
 "Bundle Scripts-----------------------------
 if &compatible
 	set nocompatible               " Be iMproved
 endif
  " Required:
-set runtimepath+=/home/maruf-dev/.vim/bundle/neobundle.vim/
+set runtimepath+=~/.vim/bundle/neobundle.vim/
   "
 " Required:
-call neobundle#begin(expand('/home/maruf-dev/.vim/bundle'))
+call neobundle#begin(expand('~/.vim/bundle'))
   "
   " " Let NeoBundle manage NeoBundle
   " " Required:
@@ -50,7 +19,7 @@ NeoBundle 'vim-syntastic/syntastic'
 NeoBundle 'nvie/vim-flake8'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'ctrlpvim/ctrlp.vim'
+"NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'vim-syntastic/syntastic'
 NeoBundle 'nvie/vim-flake8'
 " git repos on your local machine (i.e. when working on your own plugin)
@@ -64,8 +33,8 @@ NeoBundle 'ascenator/L9', {'name': 'newL9'}
 NeoBundle 'tmhedberg/SimpylFold'
 "Auto-Indentation
 NeoBundle 'vim-scripts/indentpython.vim'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'jistr/vim-nerdtree-tabs'
+"NeoBundle 'scrooloose/nerdtree'
+"NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'kien/ctrlp.vim'
 "Plugin 'davidhalter/jedi-vim'
 NeoBundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
@@ -85,9 +54,9 @@ filetype plugin indent on
 NeoBundleCheck
   " "End NeoBundle Scripts-------------------------
   "
-execute pathogen#infect()
+"execute pathogen#infect()
 let python_highlight_all=1
-let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+"let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 syntax on
 set nu
 set splitbelow
@@ -106,4 +75,13 @@ au BufNewFile,BufRead *.js, *.html, *.css, *.c
 					\ set softtabstop=2
 					\ set shiftwidth=2
 "Flaggin unnecessary whitespace
-"au BufRead,BufNewFile *.py, *.pyw,*.c, *.h match BadWhitespace /\s\+$/
+au BufRead,BufNewFile *.py, *.pyw,*.c, *.h match BadWhitespace /\s\+$/
+set path+=**
+set wildmenu
+command! MakeTags !ctags -R .
+let g:netrw_banner=0
+let g:netrw_browse_split=4
+let g:netrw_altv=1
+let g:netrw_liststyle=3
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'

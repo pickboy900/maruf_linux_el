@@ -1,0 +1,69 @@
+1) Install vim
+$ sudo apt install vim
+
+2) Install pyenv
+$ curl https://pyenv.run | bash
+
+-> set the pyenv folder
+$ echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+$ echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+
+-> create folders to maintain envs and projects with python
+# All virtualenvs will be on...
+mkdir ~/.ve 
+# All projects will be on...
+mkdir ~/workspace
+
+-> edit .bashrc file
+export WORKON_HOME=~/.ve
+export PROJECT_HOME=~/workspace
+eval "$(pyenv init -)"
+#pyenv virtualenvwrapper_lazy
+
+-> install required python version with pyenv
+$pyenv install X.X.X
+
+->make virtual env for maintaining different tool in python
+$pyenv virtualenv 3.x.x jupyter3
+$pyenv virtualenv 2.x.x ipython2
+
+-> set up jupyter for python 3
+$pyenv activate jupyter3
+$pip install jupyter
+$python -m ipykernel install --user
+$pyenv deactivate
+
+-> set up ipython for python 2
+$pyenv activate ipython2
+$pip install ipykernel
+$python -m ipykernel install --user
+$pyenv deactivate
+
+-> set up global python version and access to the virtualenvs for jupyter and ipython
+$pyenv global 3.6.0 2.7.13 jupyter3 ipython2
+
+-> Now uncomment the line #pyenv virtualenvwrapper_lazy
+
+-> install the script to detect ipython current virtualenv
+$ipython profile create
+$curl -L http://hbn.link/hb-ipython-startup-script > ~/.ipython/profile_default/startup/00-venv-sitepackages.py
+
+3) install zsh and oh-my-zsh
+sudo apt-get install zsh
+
+-> make zsh default
+# Launch Zsh
+if [ -t 1  ]; then
+exec zsh
+fi
+in ~/.bashrc
+-> install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+4) install neobundler in vim
+$ curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh
+$ sh ./install.sh
+
+5)get the rc files from the github
+
+BOOM! you are set to go

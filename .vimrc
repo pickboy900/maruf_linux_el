@@ -75,7 +75,6 @@ au BufNewFile,BufRead *.js, *.html, *.css, *.c
 					\ set softtabstop=2
 					\ set shiftwidth=2
 "Flaggin unnecessary whitespace
-au BufRead,BufNewFile *.py, *.pyw,*.c, *.h match BadWhitespace /\s\+$/
 set path+=**
 set wildmenu
 command! MakeTags !ctags -R .

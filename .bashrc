@@ -175,4 +175,8 @@ export WORKON_HOME=~/.ve
 export PROJECT_HOME=~/workspace
 eval "$(pyenv init -)"
 pyenv virtualenvwrapper_lazy
+# Launch Zsh
+if [ -t 1  ]; then
+exec zsh
+fi
 
